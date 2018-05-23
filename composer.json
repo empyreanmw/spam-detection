@@ -1,0 +1,20 @@
+{
+    "name": "empyrean/spam-detection",
+    "description": "Detects spam",
+    "type": "metapackage",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/database": "^5.7@dev",
+        "adbario/php-dot-notation": "2.x-dev",
+        "dmitrymomot/php-session": "^1.0@dev"
+    },
+    "autoload": {
+      "psr-4": {
+        "empyrean\\spam_detection\\":"src"
+      },
+      "files": [
+        "src/helpers.php"
+      ]
+    }
+}
