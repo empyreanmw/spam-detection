@@ -22,7 +22,7 @@ class ModelDetection implements DetectionInterface
         $this->body = $body;
         $this->model = $model;
         $this->user = $user;
-        $this->detectionMethods = config("model.detectionMethods");
+        $this->detectionMethods = spamConfig("model.detectionMethods");
     }
 
     public function inspect()
@@ -32,6 +32,6 @@ class ModelDetection implements DetectionInterface
             if($method->detectSpam()) $this->errorMessages[] = $method->getErrorMessage();
         }
 
-        errorHandler($this->errorMessages);
+        spamErrorHandler($this->errorMessages);
     }
 }

@@ -13,7 +13,7 @@ class TextDetection implements DetectionInterface
     public function __construct($subject)
     {
         $this->body = $subject;
-        $this->detectionMethods = config('text.detectionMethods');
+        $this->detectionMethods = spamConfig('text.detectionMethods');
     }
 
     public function inspect()
@@ -23,6 +23,6 @@ class TextDetection implements DetectionInterface
             if($method->detectSpam()) $this->errorMessages[] = $method->getErrorMessage();
         }
 
-        errorHandler($this->errorMessages);
+        spamErrorHandler($this->errorMessages);
     }
 }

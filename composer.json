@@ -17,6 +17,9 @@
     "autoload": {
       "psr-4": {
         "empyrean\\spam_detection\\":"src"
-      }
+      },
+      "files": [
+        "src/helpers.php"
+      ]
     }
 }

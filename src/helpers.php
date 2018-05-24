@@ -1,16 +1,16 @@
 <?php
 
-function config($parameter)
+function spamConfig($parameter)
 {
     return (new \empyrean\spam_detection\ConfigHandler())->get($parameter);
 }
 
-function errorHandler($message)
+function spamErrorHandler($message)
 {
     return (new \empyrean\spam_detection\ErrorHandler($message))->setSession();
 }
 
-function getErrors()
+function spamGetErrors()
 {
     return Session\Session::instance()->get('errors');
 }
