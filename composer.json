@@ -5,7 +5,7 @@
     "license": "MIT",
     "minimum-stability": "dev",
     "require": {
-        "illuminate/database": "^5.7@dev",
+        "nesbot/carbon": "1.28.0",
         "adbario/php-dot-notation": "2.x-dev",
         "dmitrymomot/php-session": "^1.0@dev"
     },
