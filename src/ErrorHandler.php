@@ -19,7 +19,7 @@ class ErrorHandler
 
     protected function redirectToPreviousPage()
     {
-        if ($_SERVER['HTTP_REFERER']) {
+        if (isSet($_SERVER['HTTP_REFERER'])) {
             return header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
     }

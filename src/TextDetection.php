@@ -3,12 +3,8 @@
 
 namespace empyrean\spam_detection;
 
-
-use empyrean\spam_detection\traits\Inspectable;
-
 class TextDetection implements DetectionInterface
 {
-    use Inspectable;
 
     protected $body;
     protected $detectionMethods;
@@ -19,4 +15,20 @@ class TextDetection implements DetectionInterface
         $this->body = $subject;
         $this->detectionMethods = $this->setDetectionMethods();
     }
+
+    public function inspect()
+    {
+        foreach ($this->detectionMethods as $methods) {
+            $method = new $methods($this->body);
+            if($method->detectSpam()) $this->errorMessages[] = $method->getErrorMessage();
+        }
+
+        (new ErrorHandler())->setSession($this->errorMessages);
+    }
+
+    public function setDetectionMethods()
+    {
+        return ConfigHandler::get('text.detectionMethods');
+    }
+
 }

@@ -5,12 +5,12 @@ use Session\Session;
 
 class Spam
 {
-    public function check(DetectionInterface $detection)
+    public static function check(DetectionInterface $detection)
     {
         return $detection->inspect();
     }
 
-    public function getErrors()
+    public static function getErrors()
     {
         return Session::instance()->get('errors');
     }

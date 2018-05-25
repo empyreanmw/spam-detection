@@ -21,7 +21,7 @@ class ForbiddenWords
     public function __construct($body)
     {
         $this->body = $body;
-        $this->words = $this->setForibddenWords();
+        $this->words = $this->setForbiddenWords();
     }
 
     public function detectSpam()
