@@ -4,8 +4,11 @@
 namespace empyrean\spam_detection;
 
 
+use empyrean\spam_detection\traits\Inspectable;
+
 class ModelDetection implements DetectionInterface
 {
+    use Inspectable;
 
     protected $body;
     protected $model;
@@ -22,16 +25,8 @@ class ModelDetection implements DetectionInterface
         $this->body = $body;
         $this->model = $model;
         $this->user = $user;
-        $this->detectionMethods = spamConfig("model.detectionMethods");
+        $this->detectionMethods = $this->setDetectionMethods();
     }
 
-    public function inspect()
-    {
-        foreach ($this->detectionMethods as $methods) {
-            $method = new $methods($this->body, $user = $this->user, $model = $this->model);
-            if($method->detectSpam()) $this->errorMessages[] = $method->getErrorMessage();
-        }
 
-        spamErrorHandler($this->errorMessages);
-    }
 }

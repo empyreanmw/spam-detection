@@ -4,7 +4,8 @@
 namespace empyrean\spam_detection\detections;
 
 use Carbon\Carbon;
-use empyrean\spam_detection\Detectable;
+use empyrean\spam_detection\ConfigHandler;
+use empyrean\spam_detection\traits\Detectable;
 
 class FrequentPosting
 {
@@ -17,7 +18,7 @@ class FrequentPosting
         $counter = 0;
         foreach($this->getLatestDatabaseEntries($this->model, 3) as $entry)
         {
-            if ($entry->created_at->diffInSeconds(Carbon::now()) < config('model.frequent_posting'))
+            if ($entry->created_at->diffInSeconds(Carbon::now()) < $this->getPostingFrequency())
             {
                 $counter++;
                 if($counter == 3)
@@ -26,5 +27,10 @@ class FrequentPosting
                 }
             }
         }
+    }
+
+    protected function getPostingFrequency()
+    {
+        return ConfigHandler::get('model.frequent_posting');
     }
 }

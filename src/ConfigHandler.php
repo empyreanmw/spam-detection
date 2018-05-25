@@ -6,17 +6,8 @@ namespace empyrean\spam_detection;
 
 class ConfigHandler
 {
-    protected $file;
-    /**
-     * ConfigHandler constructor.
-     */
-    public function __construct()
+    public static function get($parameter)
     {
-        $this->file = dot(require "Config.php");
-    }
-
-    public function get($parameter)
-    {
-        return $this->file->get($parameter);
+        return dot(require "Config.php")->get($parameter);
     }
 }

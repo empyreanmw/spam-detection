@@ -8,26 +8,19 @@ use Session\Session;
 
 class ErrorHandler
 {
-    protected $messages = [];
-    /**
-     * ErrorHandler constructor.
-     */
-    public function __construct($messages)
+    public function setSession($errorMessages)
     {
-        $this->messages = $messages;
-    }
+        if(!$errorMessages) return;
 
-    public function setSession()
-    {
-        if(!$this->messages) return;
-
-        Session::instance()->set('errors', $this->messages);
+        Session::instance()->set('errors', $errorMessages);
 
         return $this->redirectToPreviousPage();
     }
 
     protected function redirectToPreviousPage()
     {
-        return header('Location: ' . $_SERVER['HTTP_REFERER']);
+        if ($_SERVER['HTTP_REFERER']) {
+            return header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
     }
 }

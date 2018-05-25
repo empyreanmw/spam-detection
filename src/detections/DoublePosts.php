@@ -3,7 +3,7 @@
 
 namespace empyrean\spam_detection\detections;
 
-use empyrean\spam_detection\Detectable;
+use empyrean\spam_detection\traits\Detectable;
 
 class DoublePosts
 {

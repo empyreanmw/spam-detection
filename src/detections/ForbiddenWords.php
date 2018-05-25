@@ -3,6 +3,8 @@
 
 namespace empyrean\spam_detection\detections;
 
+use empyrean\spam_detection\ConfigHandler;
+
 
 /**
  * Class ForbiddenWords
@@ -19,7 +21,7 @@ class ForbiddenWords
     public function __construct($body)
     {
         $this->body = $body;
-        $this->words = config('forbidden_words');
+        $this->words = $this->setForibddenWords();
     }
 
     public function detectSpam()
@@ -32,5 +34,10 @@ class ForbiddenWords
     public function getErrorMessage()
     {
         return $this->errorMessage;
+    }
+
+    public function setForbiddenWords()
+    {
+        return ConfigHandler::get('forbidden_words');
     }
 }

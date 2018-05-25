@@ -1,7 +1,7 @@
 <?php
 
 
-namespace empyrean\spam_detection;
+namespace empyrean\spam_detection\traits;
 
 
 trait Detectable
